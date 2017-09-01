@@ -1,7 +1,6 @@
 ---
 title: "Scout Analysis"
 author: "Francisco Souza"
-date: "8/9/2017"
 output: html_document
 ---
 
@@ -28,16 +27,17 @@ library("stringr")
 library(reshape2)
 library(ggplot2)
 
+# read all file names that contains data to be analysed 
 json_files <- c(list.files(path = "./Data/", pattern="*.json"))
 ```
 
 ### **Creating a data frame that going to receive the 'parsed' data.**
 <p>An important information about the data is:
 
-*2.1* Standart informartion for each player:
+#### Standart informartion for each player:
 <p>iD, nickname,clubiD,position
   
-*2.2* Variable information
+#### Variable information
 <p>Depending of player position and action during the game can exists an column or not. For example, if a player score a goal or not or a goalkeeper performs blocks a penality etc.
 
 ```{r }
@@ -201,10 +201,11 @@ for (i in 1:length(json_files)){
 }
 ```
 
-##Creating a subset to analyse
+## Creating a subset to analyse
 
 ### Top 10 players 'Atacante'
 Getting only player 'Atacante' where performed : FF- Finalizacao para fora (+0,7), FD - Finalizacao defendida (+1,0) and FT - Finalizacao na trave (+3,5)
+
 ```{r}
 ## getting a subset to test
 subset_listOfAtletas <- subset(listOfAtletas, 
