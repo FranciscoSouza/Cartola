@@ -10,7 +10,7 @@ knitr::opts_chunk$set(echo = TRUE)
 
 # Scout Analysis - Brazilian soccer championship
 
-This is the R MarkdowDocument that bring the inicial focus on study and analyse data from payers of Brasilian soccer championship.
+This is the R MarkdowDocument that bring the inicial focus on study and analyse data from payers of Brazilian soccer championship 2017.
 
 ## Getting data
 
@@ -204,7 +204,7 @@ for (i in 1:length(json_files)){
 ## Creating a subset to analyse
 
 ### Top 10 players 'Atacante'
-Getting only player 'Atacante' where performed : FF- Finalizacao para fora (+0,7), FD - Finalizacao defendida (+1,0) and FT - Finalizacao na trave (+3,5)
+<p>Getting only player 'Atacante' where performed : FF- Finalizacao para fora (+0,7), FD - Finalizacao defendida (+1,0) and FT - Finalizacao na trave (+3,5)
 
 ```{r}
 ## getting a subset to test
@@ -212,14 +212,14 @@ subset_listOfAtletas <- subset(listOfAtletas,
                                select=c("atleta_id","posicao_id", "apelido", "scout_FF","scout_FD","scout_FT"),
                                posicao_id == 5 & scout_FF > 0 & scout_FD >0 & scout_FT>0)
 
-## meaning fo aggregated subset
+## meaning of aggregated subset
 subset_listOfAtletas_aggregated <- aggregate( subset_listOfAtletas[, 4:6],
                        by=list(subset_listOfAtletas$apelido), FUN=mean)
 
-## ordering 
+## ordering the subset
 subset_listOfAtletas_aggregated [order(scout_FF,scout_FD,scout_FT)]
 
-## Graphic with the first 10 players
+## Graphic with the TOP 10 players
 data.m <- melt(head(subset_listOfAtletas_aggregated, 10), id.vars='Group.1')
 
 ggplot(data.m, aes(Group.1, value)) + geom_bar(aes(fill = variable), 
